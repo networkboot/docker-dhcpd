@@ -1,0 +1,5 @@
+#!/bin/bash
+pushd $(dirname $0) >/dev/null
+data_dir="$(pwd)/data"
+docker run -ti --rm --net host -v "$data_dir":/data dhcpd "$@"
+popd >/dev/null

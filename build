@@ -1,0 +1,2 @@
+#!/bin/bash
+docker build -t dhcpd "$@" $(dirname $0)
