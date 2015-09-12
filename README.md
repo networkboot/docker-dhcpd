@@ -9,7 +9,7 @@ How to build
 ============
 
  1. Install Docker with the instructions on <https://www.docker.com>.
- 2. Run `./build` to create the local image `dhcpd`.
+ 2. Run `./build` to create the local docker image `networkboot/dhcpd`.
 
 How to use
 ==========
@@ -23,9 +23,9 @@ on.
  1. Create `data` folder.
  2. Create `data/dhcpd.conf` with a subnet clause for the specified
     network interface.  If you need assistance, you can run
-    `docker run -it --rm dhcpd man dhcpd.conf` for a description of
-    the configuration file syntax.
- 3. Run `docker -it --rm --net=host -v "$(pwd)/data":/data dhcpd eth0`.
+    `docker run -it --rm networkboot/dhcpd man dhcpd.conf` for a description
+    of the configuration file syntax.
+ 3. Run `docker -it --rm --net=host -v "$(pwd)/data":/data networkboot/dhcpd eth0`.
     `dhcpd` will automatically start and display its logs on the console.
     You can press Ctrl-C to terminate the server.
 
