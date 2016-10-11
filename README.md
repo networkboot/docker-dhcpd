@@ -27,7 +27,7 @@ on.
     network interface.  If you need assistance, you can run
     `docker run -it --rm networkboot/dhcpd man dhcpd.conf` for a description
     of the configuration file syntax.
- 3. Run `docker -it --rm --net=host -v "$(pwd)/data":/data networkboot/dhcpd eth0`.
+ 3. Run `docker run -it --rm --net=host -v "$(pwd)/data":/data networkboot/dhcpd eth0`.
     `dhcpd` will automatically start and display its logs on the console.
     You can press Ctrl-C to terminate the server.
 
