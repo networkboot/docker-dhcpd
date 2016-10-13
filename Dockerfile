@@ -2,11 +2,12 @@ FROM ubuntu:xenial
 
 MAINTAINER Robin Smidsrød <robin@smidsrod.no>
 
-RUN apt-get -q -y update \
- && apt-get -q -y -o "DPkg::Options::=--force-confold" -o "DPkg::Options::=--force-confdef" dist-upgrade \
- && apt-get -q -y -o "DPkg::Options::=--force-confold" -o "DPkg::Options::=--force-confdef" install isc-dhcp-server man python3\
- && apt-get -q -y autoremove \
- && apt-get -q -y clean \
+RUN DEBIAN_FRONTEND=noninteractive apt-get -q -y update \
+ && DEBIAN_FRONTEND=noninteractive apt-get -q -y -o "DPkg::Options::=--force-confold" -o "DPkg::Options::=--force-confdef" install apt-utils \
+ && DEBIAN_FRONTEND=noninteractive apt-get -q -y -o "DPkg::Options::=--force-confold" -o "DPkg::Options::=--force-confdef" dist-upgrade \
+ && DEBIAN_FRONTEND=noninteractive apt-get -q -y -o "DPkg::Options::=--force-confold" -o "DPkg::Options::=--force-confdef" install isc-dhcp-server man python3 \
+ && DEBIAN_FRONTEND=noninteractive apt-get -q -y autoremove \
+ && DEBIAN_FRONTEND=noninteractive apt-get -q -y clean \
  && rm -rf /var/lib/apt/lists/*
 
 COPY util/my_init.py /sbin/my_init
