@@ -14,4 +14,5 @@ RUN apt-get -q -y update \
 
 COPY util/my_init.py /sbin/my_init
 COPY util/entrypoint.sh /entrypoint.sh
+RUN chmod 755 /entrypoint.sh
 ENTRYPOINT ["/entrypoint.sh"]
