@@ -13,7 +13,7 @@ if [ -z "$1" ]; then
     IFACE=" "
 fi
 
-init="/sbin/my_init --skip-startup-files --skip-runit"
+init="/usr/bin/dumb-init"
 
 if [ -n "$IFACE" ]; then
     # Run dhcpd for specified interface or all interfaces

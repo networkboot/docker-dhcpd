@@ -55,12 +55,12 @@ This image uses the following software components:
 
  * Ubuntu Linux distribution from <https://www.ubuntu.com>.
  * ISC DHCP server from <https://www.isc.org/downloads/dhcp/>.
- * Docker-optimized my_init from <https://github.com/phusion/baseimage-docker>.
+ * Dumb-init from <https://github.com/Yelp/dumb-init>.
 
 Copyright & License
 ===================
 
-This project is copyright 2016 Robin Smidsrød <robin@smidsrod.no>.
+This project is copyright 2017 Robin Smidsrød <robin@smidsrod.no>.
 
 It is licensed under the Apache 2.0 license.
 
