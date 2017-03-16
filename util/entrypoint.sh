@@ -3,6 +3,12 @@ set -e
 
 # Single argument to command line is interface name
 if [ -n "$1" ]; then
+    # loop until interface is found, or we give up
+    NEXT_WAIT_TIME=1
+    until [ -e "/sys/class/net/$1" ] || [ $NEXT_WAIT_TIME -eq 4 ]; do
+        sleep $(( NEXT_WAIT_TIME++ ))
+        echo "Waiting for $1 to become available.... ${NEXT_WAIT_TIME}"
+    done
     if [ -e "/sys/class/net/$1" ]; then
         IFACE=$1
     fi
