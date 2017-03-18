@@ -14,4 +14,5 @@ RUN apt-get -q -y update \
 
 COPY util/dumb-init_1.2.0_amd64 /usr/bin/dumb-init
 COPY util/entrypoint.sh /entrypoint.sh
+RUN chmod 755 /entrypoint.sh
 ENTRYPOINT ["/entrypoint.sh"]
