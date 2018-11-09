@@ -1,2 +1,10 @@
 #!/bin/bash
-docker build -t networkboot/dhcpd "$@" $(dirname $0)
+MACHINE_TYPE=`uname -m`
+
+if [ ${MACHINE_TYPE} == 'x86_64' ]; then
+  docker build -t networkboot/dhcpd "$@" $(dirname $0)
+elif [ ${MACHINE_TYPE} == 'armv7l' ]; then
+  docker build -t networkboot/dhcpd:arm32v7 "$@" $(dirname $0) -f Dockerfile.arm32v7
+else 
+  echo "Your machine type $MACHINE_TYPE is currently not supported" >&2
+fi
