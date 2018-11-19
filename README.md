@@ -3,6 +3,10 @@
 This repo was forked from [networkboot/docker-dhcpd](https://github.com/networkboot/docker-dhcpd).
 See the [original README](SRC-README.md) for more details.
 
+**Very Important Note**
+
+Since this is forked from another repo, make certain you are using the `pts-master` branch (instead of `master`). The `master` branch needs to remain in-sync with the original source.
+
 How to use this:
 
 1. Install [Docker](https://www.docker.com/) if you haven't already
