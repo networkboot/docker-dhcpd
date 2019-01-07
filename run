@@ -15,5 +15,5 @@ if [ -z "$DATA_DIR" ]; then
   DATA_DIR="$(pwd)/data"
 fi
 
-docker run -ti --rm --net host -v "$DATA_DIR":/data networkboot/dhcpd"${MACHINE_TAG}" "$@"
+docker run -ti --rm --net host -v "$DATA_DIR":/data "networkboot/dhcpd${MACHINE_TAG}" "$@"
 
