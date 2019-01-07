@@ -1,5 +1,19 @@
 #!/bin/bash
-pushd $(dirname $0) >/dev/null
-data_dir="$(pwd)/data"
-docker run -ti --rm --net host -v "$data_dir":/data networkboot/dhcpd "$@"
-popd >/dev/null
+
+MACHINE_TYPE=`uname -m`
+
+if [ "${MACHINE_TYPE}" = 'x86_64' ]; then
+  MACHINE_TAG=
+elif [ "${MACHINE_TYPE}" = armv7l ]; then
+  MACHINE_TAG=':arm32v7'
+else
+  echo "Arhictecture not supported: $MACHINE_TYPE" 1>&2
+  exit 1
+fi
+
+if [ -z "$DATA_DIR" ]; then
+  DATA_DIR="$(pwd)/data"
+fi
+
+docker run -ti --rm --net host -v "$DATA_DIR":/data networkboot/dhcpd"${MACHINE_TAG}" "$@"
+
