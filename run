@@ -15,5 +15,7 @@ if [ -z "$DATA_DIR" ]; then
   DATA_DIR="$(pwd)/data"
 fi
 
+cd "$(dirname "$0")" || exit 1	# bash prints a message if dir not found.
+
 docker run -ti --rm --net host -v "$DATA_DIR":/data "networkboot/dhcpd${MACHINE_TAG}" "$@"
 
