@@ -7,7 +7,7 @@ if [ "${MACHINE_TYPE}" = 'x86_64' ]; then
 elif [ "${MACHINE_TYPE}" = armv7l ]; then
   MACHINE_TAG=':arm32v7'
 else
-  echo "Arhictecture not supported: $MACHINE_TYPE" 1>&2
+  echo "Architecture not supported: $MACHINE_TYPE" 1>&2
   exit 1
 fi
 
