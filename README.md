@@ -18,7 +18,7 @@ How to use
 
 The most common use-case is to provide DHCP service to the host network of
 the machine running Docker.  For that you need to create a configuration for
-the DHCP server, start the container with the `--net=host` docker run
+the DHCP server, start the container with the `--net host` docker run
 option and specify the network interface you want to provide DHCP service
 on.
 
@@ -27,7 +27,7 @@ on.
     network interface.  If you need assistance, you can run
     `docker run -it --rm networkboot/dhcpd man dhcpd.conf` for a description
     of the configuration file syntax.
- 3. Run `docker run -it --rm --net=host -v "$(pwd)/data":/data networkboot/dhcpd eth0`.
+ 3. Run `docker run -it --rm --init --net host -v "$(pwd)/data":/data networkboot/dhcpd eth0`.
     `dhcpd` will automatically start and display its logs on the console.
     You can press Ctrl-C to terminate the server.
 
@@ -42,7 +42,7 @@ server as the same user that owns the `data` folder.  This ensures that the
 permissions on the files inside the `data` folder is kept consistent.  If
 the `data` folder is owned by root, dhcpd is run as the normal dhcpd user.
 
-If you forget to run the docker container with the `--net=host` option a
+If you forget to run the docker container with the `--net host` option a
 warning will be emitted informing you that you've probably forgotten it.
 
 If a `/data` volume is not provided with a `dhcpd.conf` inside it, the
