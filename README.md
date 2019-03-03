@@ -48,6 +48,12 @@ warning will be emitted informing you that you've probably forgotten it.
 If a `/data` volume is not provided with a `dhcpd.conf` inside it, the
 container will exit early with an error message.
 
+An additional Dockerfile has been added that allows building an image with
+the tag `:ldap` which contains the **isc-dhcp-server-ldap** package in
+addition to the normal DHCP server package.  Other than that it behaves in
+exactly the same way as the `:latest` tag.  Utility build and run scripts
+have also been added to work with this variant.
+
 Acknowledgements
 ================
 
