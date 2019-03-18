@@ -3,7 +3,13 @@
 set -e
 
 
-init="/usr/bin/dumb-init"
+# Support docker run --init parameter which obsoletes the use of dumb-init,
+# but support dumb-init for those that still use it without --init
+if [ -x "/dev/init" ]; then
+    run="exec"
+else
+    run="exec /usr/bin/dumb-init --"
+fi
 
 # Single argument to command line is interface name
 if [ $# -eq 1 -a -n "$1" ]; then
@@ -63,8 +69,8 @@ if [ -n "$IFACE" ]; then
         echo "You must add the 'docker run' option '--net=host' if you want to provide DHCP service to the host network."
     fi
 
-    exec $init -- /usr/sbin/dhcpd -4 -f -d --no-pid -cf "$data_dir/dhcpd.conf" -lf "$data_dir/dhcpd.leases" $IFACE
+    $run /usr/sbin/dhcpd -4 -f -d --no-pid -cf "$data_dir/dhcpd.conf" -lf "$data_dir/dhcpd.leases" $IFACE
 else
     # Run another binary
-    exec $init -- "$@"
+    $run "$@"
 fi
