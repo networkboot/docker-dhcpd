@@ -46,6 +46,4 @@ if perl -e '($id,$name)=@ARGV;$short=substr $id,0,length $name;exit 1 if $name n
     echo "You must add the 'docker run' option '--net=host' if you want to provide DHCP service to the host network."
 fi
 
-echo "Hello!!!!!"
-
 $run /usr/sbin/dhcpd -4 -f -d --no-pid -cf "$data_dir/dhcpd.conf" -lf "$data_dir/dhcpd.leases" "$@"
