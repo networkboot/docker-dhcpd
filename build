@@ -1,2 +1,2 @@
 #!/bin/bash
-docker build -t networkboot/dhcpd "$@" $(dirname $0)
+docker build -t formlabs/dhcpd "$@" $(dirname $0)
