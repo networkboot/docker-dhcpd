@@ -39,7 +39,7 @@ DHCPv6
 
 To use a DHCPv6-Server you have to pass `DHCPv6` as enviroment variable
 
-`docker run -it --rm --init -e DHCPv6 --net host -v "$(pwd)/data":/data networkboot/dhcpd eth0`
+`docker run -it --rm --init -e DHCPD_PROTOCOL=6 --net host -v "$(pwd)/data":/data networkboot/dhcpd eth0`
 
 
 Notes
