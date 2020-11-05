@@ -34,6 +34,14 @@ on.
 A simple `run` script is also included which makes it quick to iterate on a
 configuration until you're satisfied.
 
+DHCPv6
+------
+
+To use a DHCPv6-Server you have to pass `DHCPD_PROTOCOL=6` as enviroment variable
+
+`docker run -it --rm --init -e DHCPD_PROTOCOL=6 --net host -v "$(pwd)/data":/data networkboot/dhcpd eth0`
+
+
 Notes
 =====
 

@@ -69,7 +69,7 @@ if [ -n "$IFACE" ]; then
         echo "You must add the 'docker run' option '--net=host' if you want to provide DHCP service to the host network."
     fi
 
-    $run /usr/sbin/dhcpd -4 -f -d --no-pid -cf "$data_dir/dhcpd.conf" -lf "$data_dir/dhcpd.leases" $IFACE
+    $run /usr/sbin/dhcpd -$DHCPD_PROTOCOL -f -d --no-pid -cf "$data_dir/dhcpd.conf" -lf "$data_dir/dhcpd.leases" $IFACE
 else
     # Run another binary
     $run "$@"

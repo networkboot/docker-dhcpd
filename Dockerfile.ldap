@@ -12,5 +12,7 @@ RUN apt-get -q -y update \
  && apt-get -q -y clean \
  && rm -rf /var/lib/apt/lists/*
 
+ENV DHCPD_PROTOCOL=4
+
 COPY util/entrypoint.sh /entrypoint.sh
 ENTRYPOINT ["/entrypoint.sh"]
