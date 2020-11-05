@@ -1,2 +1,0 @@
-#!/bin/bash
-docker build -t networkboot/dhcpd:v6 -f Dockerfile.v6 "$@" $(dirname $0)
