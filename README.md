@@ -74,7 +74,7 @@ This image uses the following software components:
 Copyright & License
 ===================
 
-This project is copyright 2017 Robin Smidsrød <robin@smidsrod.no>.
+This project is copyright 2022 Robin Smidsrød <robin@smidsrod.no>.
 
 It is licensed under the Apache 2.0 license.
 

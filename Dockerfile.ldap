@@ -1,13 +1,14 @@
-FROM ubuntu:18.04
+FROM ubuntu:20.04
 
-MAINTAINER Robin Smidsrød <robin@smidsrod.no>
+LABEL org.opencontainers.image.authors="Robin Smidsrød <robin@smidsrod.no>"
 
 ARG DEBIAN_FRONTEND=noninteractive
 
+RUN yes | unminimize
+
 RUN apt-get -q -y update \
- && apt-get -q -y -o "DPkg::Options::=--force-confold" -o "DPkg::Options::=--force-confdef" install apt-utils \
- && rm /etc/dpkg/dpkg.cfg.d/excludes \
- && apt-get -q -y -o "DPkg::Options::=--force-confold" -o "DPkg::Options::=--force-confdef" install dumb-init isc-dhcp-server-ldap man \
+ && apt-get -q -y -o "DPkg::Options::=--force-confold" -o "DPkg::Options::=--force-confdef" install \
+     apt-utils dumb-init isc-dhcp-server-ldap man \
  && apt-get -q -y autoremove \
  && apt-get -q -y clean \
  && rm -rf /var/lib/apt/lists/*
