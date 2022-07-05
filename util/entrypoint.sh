@@ -51,12 +51,8 @@ if [ -n "$IFACE" ]; then
 
     uid=$(stat -c%u "$data_dir")
     gid=$(stat -c%g "$data_dir")
-    if [ $gid -ne 0 ]; then
-        groupmod -g $gid dhcpd
-    fi
-    if [ $uid -ne 0 ]; then
-        usermod -u $uid dhcpd
-    fi
+    groupmod -og $gid dhcpd
+    usermod -ou $uid dhcpd
 
     [ -e "$data_dir/dhcpd.leases" ] || touch "$data_dir/dhcpd.leases"
     chown dhcpd:dhcpd "$data_dir/dhcpd.leases"
@@ -69,7 +65,7 @@ if [ -n "$IFACE" ]; then
         echo "You must add the 'docker run' option '--net=host' if you want to provide DHCP service to the host network."
     fi
 
-    $run /usr/sbin/dhcpd -$DHCPD_PROTOCOL -f -d --no-pid -cf "$data_dir/dhcpd.conf" -lf "$data_dir/dhcpd.leases" $IFACE
+    $run /usr/sbin/dhcpd -$DHCPD_PROTOCOL -f -d --no-pid -cf "$data_dir/dhcpd.conf" -lf "$data_dir/dhcpd.leases" -user dhcpd -group dhcpd $IFACE
 else
     # Run another binary
     $run "$@"
