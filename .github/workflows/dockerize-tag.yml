@@ -1,6 +1,6 @@
 name: Build and Push version tagged Docker for each tag
 on: push
-  #branches: [ master ]
+  branches: [ master, pull-request ]
   tags:
     - 'v[0-9]+.[0-9]+.[0-9]+'
 jobs:
