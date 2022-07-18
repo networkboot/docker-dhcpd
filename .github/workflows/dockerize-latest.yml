@@ -2,7 +2,7 @@ name: Build and Push latest Docker for each commit
 
 on:
   push:
-    branches: [ master ]
+    branches: [ master, pull-request ]
   workflow_dispatch:
 
 jobs:
@@ -34,7 +34,7 @@ jobs:
         with:
           platforms: linux/amd64,linux/arm/v7,linux/arm64
           push: true
-          tags: wickywaka/docker-dhcpd:latest
+          tags: wickywaka/docker-dhcpd:la-test
 
       - name: Image digest
         run: echo ${{ steps.docker_build.outputs.digest }}
