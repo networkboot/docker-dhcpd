@@ -1,4 +1,4 @@
-name: Build and Push latest Docker for each commit
+name: Build and Push latest
 
 on:
   push:
