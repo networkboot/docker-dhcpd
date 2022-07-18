@@ -11,5 +11,5 @@ jobs:
       - uses: olegtarasov/get-tag@v2.1
         id: tagName
       - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
-      #- run: echo "🎉 Tag is ${{ steps.tagName.outputs.tag }}."
+      - run: echo "🎉 Tag is ${{ steps.tagName.outputs.tag }}."
       - run: echo "🍏 This job's status is ${{ job.status }}."
