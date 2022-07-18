@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  build:
+  build-Push-Latest:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repository
