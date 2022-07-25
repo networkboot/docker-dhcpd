@@ -7,7 +7,7 @@ jobs:
   build-push-tag:
     runs-on: ubuntu-latest
     steps:
-     - name: Parse semver string
+      - name: Parse semver string
        id: semver_parser 
        uses: booxmedialtd/ws-action-parse-semver@v1
        with:
@@ -16,7 +16,7 @@ jobs:
      - name: Use parsed semver
        run: |
             echo "v${{ steps.semver_parser.outputs.fullversion }}"
-    steps:
+
       - uses: olegtarasov/get-tag@v2.1
         id: get-tag
         with:
