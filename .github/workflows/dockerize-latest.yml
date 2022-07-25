@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  build-Push-Latest:
+  build-push-latest:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repository
@@ -34,7 +34,7 @@ jobs:
         with:
           platforms: linux/amd64,linux/arm/v7,linux/arm64
           push: true
-          tags: wickywaka/docker-dhcpd:latest
+          tags: networkboot/dhcpd:latest
 
       - name: Image digest
         run: echo ${{ steps.docker_build.outputs.digest }}
