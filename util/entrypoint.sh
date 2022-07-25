@@ -5,10 +5,10 @@ set -e
 
 # Support docker run --init parameter which obsoletes the use of dumb-init,
 # but support dumb-init for those that still use it without --init
-if [ -x "/dev/init" ]; then
-    run="exec"
-else
+if [ $$ -eq 1 ]; then
     run="exec /usr/bin/dumb-init --"
+else
+    run="exec"
 fi
 
 # Single argument to command line is interface name
