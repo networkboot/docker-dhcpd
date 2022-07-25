@@ -7,7 +7,7 @@ jobs:
   build-push-tag:
     runs-on: ubuntu-latest
     steps:
-      - name: Parse semver string
+     - name: Parse semver string
        id: semver_parser 
        uses: booxmedialtd/ws-action-parse-semver@v1
        with:
