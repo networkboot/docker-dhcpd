@@ -12,15 +12,11 @@ jobs:
         with:
           tagRegex: "v(.*)"
 
-     - name: Parse semver string
-       id: semver_parser 
-       uses: booxmedialtd/ws-action-parse-semver@v1
-       with:
-         input_string: $GIT_TAG_NAME
-         version_extractor_regex: '\/v(.*)$'
-     - name: Use parsed semver
-       run: |
-            echo "v${{ steps.semver_parser.outputs.fullversion }}"
+      - name: Parse Semver String
+        id: semver-parser 
+        uses: booxmedialtd/ws-action-parse-semver@v1
+        with:
+         input_string: "${{ steps.get-tag.outputs.tag }}"
 
       - name: Checkout Repository
         uses: actions/checkout@v2
@@ -41,13 +37,13 @@ jobs:
           username: ${{ secrets.DOCKER_HUB_USERNAME }}
           password: ${{ secrets.DOCKER_HUB_TOKEN }}
 
-      - name: Build and push
+      - name: Build and Push
         id: docker_build
         uses: docker/build-push-action@v2
         with:
           platforms: linux/amd64,linux/arm/v7,linux/arm64
           push: true
-          tags: networkboot/dhcpd:${{ steps.get-tag.outputs.tag }}
+          tags: networkboot/dhcpd:${{ steps.semver-parser.outputs.fullversion }}
 
-      - name: Image digest
+      - name: Print Image Digest
         run: echo ${{ steps.docker_build.outputs.digest }}
