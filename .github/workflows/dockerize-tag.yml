@@ -12,15 +12,11 @@ jobs:
         with:
           tagRegex: "v(.*)"
 
-      - name: Parse semver string
+      - name: Parse Semver String
         id: semver-parser 
         uses: booxmedialtd/ws-action-parse-semver@v1
         with:
          input_string: "${{ steps.get-tag.outputs.tag }}"
-
-      - name: Use parsed semver
-        run: |
-            echo "v${{ steps.semver-parser.outputs.fullversion }}"
 
       - name: Checkout Repository
         uses: actions/checkout@v2
@@ -49,5 +45,5 @@ jobs:
           push: true
           tags: networkboot/dhcpd:${{ steps.semver-parser.outputs.fullversion }}
 
-      - name: Image digest
+      - name: Print Image Digest
         run: echo ${{ steps.docker_build.outputs.digest }}
