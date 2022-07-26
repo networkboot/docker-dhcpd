@@ -20,7 +20,6 @@ jobs:
         uses: booxmedialtd/ws-action-parse-semver@v1
         with:
          input_string: $GIT_TAG_NAME
-         version_extractor_regex: '\/v(.*)$'
 
     #  - name: Use parsed semver
     #    run: echo "v${{ steps.semver-parser.outputs.fullversion }}"
