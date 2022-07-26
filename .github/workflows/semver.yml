@@ -15,10 +15,10 @@ jobs:
       -  run:  echo $GIT_TAG_NAME
       -  run:  echo "${{ steps.get-tag.outputs.tag }}"
 
-     - name: Parse semver string
-       id: semver-parser 
-       uses: booxmedialtd/parse-semver@v1
-       with:
+      - name: Parse semver string
+        id: semver-parser 
+        uses: booxmedialtd/ws-action-parse-semver@v1
+        with:
          input_string: 'refs/tags/v1.0.4'
          version_extractor_regex: '\/v(.*)$'
 
