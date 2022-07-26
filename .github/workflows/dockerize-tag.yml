@@ -14,7 +14,7 @@ jobs:
 
      - name: Parse semver string
        id: semver-parser 
-       uses: booxmedialtd/ws-action-parse-semver@v1
+       uses: booxmedialtd/parse-semver@v1
        with:
          input_string: 'refs/tags/v1.0.4'
          version_extractor_regex: '\/v(.*)$'
