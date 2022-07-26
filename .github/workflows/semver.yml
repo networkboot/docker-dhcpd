@@ -19,7 +19,7 @@ jobs:
         id: semver-parser 
         uses: booxmedialtd/ws-action-parse-semver@v1
         with:
-         input_string: "${{ steps.get-tag.outputs.tag }}"
+         input_string: "$GIT_TAG_NAME"
 
     #  - name: Use parsed semver
     #    run: echo "v${{ steps.semver-parser.outputs.fullversion }}"
