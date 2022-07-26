@@ -12,12 +12,12 @@ jobs:
         with:
           tagRegex: "v(.*)"
 
-     - name: Parse semver string
-       id: semver-parser 
-       uses: booxmedialtd/parse-semver@v1
-       with:
-         input_string: 'refs/tags/v1.0.4'
-         version_extractor_regex: '\/v(.*)$'
+      - name: Parse semver string
+        id: semver-parser 
+        uses: booxmedialtd/parse-semver@v1
+        with:
+         input_string: "${{ steps.get-tag.outputs.tag }}"
+
     #  - name: Use parsed semver
     #    run: |
     #         echo "v${{ steps.semver-parser.outputs.fullversion }}"
