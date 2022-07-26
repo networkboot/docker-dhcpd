@@ -14,7 +14,7 @@ jobs:
 
       - name: Parse semver string
         id: semver-parser 
-        uses: booxmedialtd/parse-semver@v1
+        uses: booxmedialtd/ws-action-parse-semver@v1
         with:
          input_string: "${{ steps.get-tag.outputs.tag }}"
 
