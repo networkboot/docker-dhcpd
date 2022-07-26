@@ -13,14 +13,14 @@ jobs:
           tagRegex: "v(.*)"
 
      - name: Parse semver string
-       id: semver_parser 
+       id: semver-parser 
        uses: booxmedialtd/ws-action-parse-semver@v1
        with:
-         input_string: $GIT_TAG_NAME
+         input_string: 'refs/tags/v1.0.4'
          version_extractor_regex: '\/v(.*)$'
-     - name: Use parsed semver
-       run: |
-            echo "v${{ steps.semver_parser.outputs.fullversion }}"
+    #  - name: Use parsed semver
+    #    run: |
+    #         echo "v${{ steps.semver-parser.outputs.fullversion }}"
 
       # - name: Checkout Repository
       #   uses: actions/checkout@v2
