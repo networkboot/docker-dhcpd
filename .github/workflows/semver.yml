@@ -14,7 +14,7 @@ jobs:
 
       - name: print get-tag result
         run: echo $GIT_TAG_NAME
-        run: echo ${{ steps.get-tag.outputs.tag }}
+        run: echo "${{ steps.get-tag.outputs.tag }}"
 
     #  - name: Parse semver string
     #    id: semver-parser 
