@@ -29,7 +29,7 @@ jobs:
           password: ${{ secrets.DOCKER_HUB_TOKEN }}
 
       - name: Build and Push ldap
-        id: docker_build
+        id: docker_build_ldap
         uses: docker/build-push-action@v2
         with:
           platforms: linux/amd64,linux/arm/v7,linux/arm64
@@ -47,3 +47,6 @@ jobs:
 
       - name: Print Image Digest
         run: echo ${{ steps.docker_build.outputs.digest }}
+
+      - name: Print LDAP Image Digest
+        run: echo ${{ steps.docker_build_ldap.outputs.digest }}
