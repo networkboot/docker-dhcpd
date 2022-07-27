@@ -37,13 +37,30 @@ jobs:
           username: ${{ secrets.DOCKER_HUB_USERNAME }}
           password: ${{ secrets.DOCKER_HUB_TOKEN }}
 
+
+      - name: Build and Push ldap
+        id: docker_build_ldap
+        uses: docker/build-push-action@v2
+        with:
+          platforms: linux/amd64,linux/arm/v7,linux/arm64
+          push: true
+          file: Dockerfile.ldap
+          tags:
+            wickywaka/docker-dhcpd:ladp-${{ steps.semver-parser.outputs.fullversion }},
+            wickywaka/docker-dhcpd:ldap-${{ steps.semver-parser.outputs.major }}
+
+      - name: Print LDAP Image Digest
+        run: echo ${{ steps.docker_build_ldap.outputs.digest }}
+        
       - name: Build and Push
         id: docker_build
         uses: docker/build-push-action@v2
         with:
           platforms: linux/amd64,linux/arm/v7,linux/arm64
           push: true
-          tags: networkboot/dhcpd:${{ steps.semver-parser.outputs.fullversion }}
+          tags:
+            networkboot/dhcpd:${{ steps.semver-parser.outputs.fullversion }},
+            networkboot/dhcpd:${{ steps.semver-parser.outputs.major }}
 
       - name: Print Image Digest
         run: echo ${{ steps.docker_build.outputs.digest }}
