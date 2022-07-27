@@ -2,7 +2,7 @@ name: Build and Push latest
 
 on:
   push:
-    branches: [ master ]
+    branches: [ pull-request ]
   workflow_dispatch:
 
 jobs:
@@ -27,6 +27,15 @@ jobs:
         with:
           username: ${{ secrets.DOCKER_HUB_USERNAME }}
           password: ${{ secrets.DOCKER_HUB_TOKEN }}
+
+      - name: Build and Push ldap
+        id: docker_build
+        uses: docker/build-push-action@v2
+        with:
+          platforms: linux/amd64,linux/arm/v7,linux/arm64
+          push: true
+          file: Dockerfile.ldap
+          tags: wickywaka/docker-dhcpd:ldap-latest
 
       - name: Build and Push
         id: docker_build
