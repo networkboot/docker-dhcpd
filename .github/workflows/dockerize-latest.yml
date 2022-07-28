@@ -2,7 +2,7 @@ name: Build and Push latest
 
 on:
   push:
-    branches: [ pull-request ]
+    branches: [ master ]
   workflow_dispatch:
 
 jobs:
@@ -28,16 +28,20 @@ jobs:
           username: ${{ secrets.DOCKER_HUB_USERNAME }}
           password: ${{ secrets.DOCKER_HUB_TOKEN }}
 
-      - name: Build and Push ldap
+      - name: Build and Push Dockerfile.ldap
         id: docker_build_ldap
         uses: docker/build-push-action@v2
         with:
           platforms: linux/amd64,linux/arm/v7,linux/arm64
           push: true
           file: Dockerfile.ldap
-          tags: wickywaka/docker-dhcpd:ldap-latest
+          tags: networkboot/dhcpd:ldap-latest
 
-      - name: Build and Push
+
+      - name: Print LDAP Image Digest
+        run: echo ${{ steps.docker_build_ldap.outputs.digest }}
+
+      - name: Build and Push Dockerfile
         id: docker_build
         uses: docker/build-push-action@v2
         with:
@@ -45,8 +49,6 @@ jobs:
           push: true
           tags: networkboot/dhcpd:latest
 
+
       - name: Print Image Digest
         run: echo ${{ steps.docker_build.outputs.digest }}
-
-      - name: Print LDAP Image Digest
-        run: echo ${{ steps.docker_build_ldap.outputs.digest }}
