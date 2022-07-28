@@ -46,8 +46,8 @@ jobs:
           push: true
           file: Dockerfile.ldap
           tags:
-            wickywaka/docker-dhcpd:ladp-${{ steps.semver-parser.outputs.fullversion }},
-            wickywaka/docker-dhcpd:ldap-${{ steps.semver-parser.outputs.major }}
+            networkboot/dhcpd:ladp-${{ steps.semver-parser.outputs.fullversion }},
+            networkboot/dhcpd:ldap-${{ steps.semver-parser.outputs.major }}
 
       - name: Print LDAP Image Digest
         run: echo ${{ steps.docker_build_ldap.outputs.digest }}
