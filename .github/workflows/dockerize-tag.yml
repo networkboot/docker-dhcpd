@@ -46,7 +46,7 @@ jobs:
           push: true
           file: Dockerfile.ldap
           tags:
-            networkboot/dhcpd:ladp-${{ steps.semver-parser.outputs.fullversion }},
+            networkboot/dhcpd:ldap-${{ steps.semver-parser.outputs.fullversion }},
             networkboot/dhcpd:ldap-${{ steps.semver-parser.outputs.major }}
 
       - name: Print LDAP Image Digest
