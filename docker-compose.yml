@@ -1,0 +1,14 @@
+version: "3"
+services:
+  dhcp:
+    image: networkboot/dhcpd:latest
+    container_name: dhcpd
+    restart: unless-stopped
+    ports:
+      # Public dhcpd Port:
+      - "67:67/udp"
+    volumes:
+       - /home/dhcp:/data
+    network_mode: "host"
+    environment:
+       - TZ=Pacific/Auckland
