@@ -1,0 +1,54 @@
+name: Build and Push latest
+
+on:
+  push:
+    branches: [ master ]
+  workflow_dispatch:
+
+jobs:
+  build-push-latest:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: Setup QEMU
+        id: qemu
+        uses: docker/setup-qemu-action@v1.0.1
+        with:
+          platforms: linux/amd64,linux/arm/v7,linux/arm64
+
+      - name: Set up Docker Buildx
+        id: buildx
+        uses: docker/setup-buildx-action@v1.0.4
+
+      - name: Login to Docker Hub
+        uses: docker/login-action@v1.8.0
+        with:
+          username: ${{ secrets.DOCKER_HUB_USERNAME }}
+          password: ${{ secrets.DOCKER_HUB_TOKEN }}
+
+      - name: Build and Push Dockerfile.ldap
+        id: docker_build_ldap
+        uses: docker/build-push-action@v2
+        with:
+          platforms: linux/amd64,linux/arm/v7,linux/arm64
+          push: true
+          file: Dockerfile.ldap
+          tags: networkboot/dhcpd:ldap-latest
+
+
+      - name: Print LDAP Image Digest
+        run: echo ${{ steps.docker_build_ldap.outputs.digest }}
+
+      - name: Build and Push Dockerfile
+        id: docker_build
+        uses: docker/build-push-action@v2
+        with:
+          platforms: linux/amd64,linux/arm/v7,linux/arm64
+          push: true
+          tags: networkboot/dhcpd:latest
+
+
+      - name: Print Image Digest
+        run: echo ${{ steps.docker_build.outputs.digest }}
