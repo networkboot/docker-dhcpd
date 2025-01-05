@@ -7,6 +7,15 @@ This Docker image is suitable for running a DHCP server for your docker host
 network.  It uses ISC DHCP server which is bundled with the latest Ubuntu
 LTS distribution.
 
+!!! Archived !!!
+================
+
+As I've switched over to ISC KEA DHCP server for my local network,
+and ISC is in the process of no longer maintaining the ISC DHCP server,
+I've decided to archive this repo and no longer maintain it.
+
+Good bye, and thank you for all the fish!
+
 How to build
 ============
 
